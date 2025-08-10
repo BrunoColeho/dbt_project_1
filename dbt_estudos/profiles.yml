@@ -1,0 +1,10 @@
+dbt_estudos:
+  target: dev
+  outputs:
+    dev:
+      dataset: "{{ env_var('DBT_DBNAME', 'dbt_dw') }}"
+      type: bigquery
+      method: service-account
+      project: tensile-spirit-427101-q7
+      threads: 4
+      keyfile: C:/Users/craft/.dbt/tensile-spirit-427101-q7-ee12a5d89973.json
