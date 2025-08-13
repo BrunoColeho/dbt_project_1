@@ -31,6 +31,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   dbt_estudos:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    staging:
+      schema: staging #aqui eu digo que tudo que estiver dentro da tabela staging, ele vai jogar dentro do schema/banco de dados staging
+      materialized: table #a forma de materialização, como quero que seja salvo vai ser table, crie de fato uma tabela
+      tags: ['staging'] #aqui eu digo que essa tabela vai ser usada para o staging
+    
+    intermediate:
+      materialized: ephemeral #tabela temporaria, digamos assim
+
+    marts:
+      schema: marts
+      materialized: table
+
+
+seeds:
+  +schema: seeds #custom schema, ele vai concatenar com o schema padrao
+  tags: ['seed']
